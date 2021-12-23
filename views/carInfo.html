@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/manage.js"></script>
+    <title>List</title>
+
+    <!-- Page level plugin CSS-->
+    <th:block layout:fragment="contentsCss">
+    </th:block>
+    <script>
+        $(document).ready(function(){
+            init(10);
+        });
+    </script>
+    <style>
+        .default{
+            font-size: 20px;
+            color: black;
+        }
+
+        .page{
+            font-size: 25px;
+            color: blue;
+        }
+
+        th{
+            font-size: 30px;
+        }
+
+        .createInput{
+            width: 98%;
+            height: 96%;
+        }
+
+        .searchData{
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+<!-- header를 작성하지 않아도 header가 이 위치에 구성된다. -->
+
+<div class="container" layout:fragment="content">
+
+    <div class="page-header">
+        <h1>차량 정보 조회</h1>
+        <input type="text" id="searchNumber" placeholder="차량번호를 입력하세요." style="font-size: 35px">
+        <input type="button" id="carSearch" value="검색" style="font-size: 29px">
+    </div>
+
+    <div id="searchList" style="display: none">
+        <table border ="1" width="100%" height="100%" bordercolor="black" cellspacing="5">
+            <thead>
+                <tr>
+                    <th>날짜</th>
+                    <th>차량번호</th>
+                    <th>차량이름</th>
+                    <th>키로수</th>
+                    <th>작업내용</th>
+                    <th>총 금액</th>
+                    <th>비고</th>
+                    <th>수정</th>
+                    <th>삭제</th>
+                </tr>
+            </thead>
+            <tbody id="carDetail">
+
+            </tbody>
+        </table>
+    </div>
+    <div style="margin-top: 100px;">
+        <h1>차량 정보 등록</h1>
+        <table border ="1" width="100%" height=50 bordercolor="black" cellspacing="5">
+            <thead>
+                <th>날짜</th>
+                <th>차량번호</th>
+                <th>차량이름</th>
+                <th>키로수</th>
+                <th>작업 내용
+                    <input type="button" id="appendWork" value="작업 추가">
+                    <input type="button" id="deleteWork" value="작업 삭제">
+                </th>
+                <th>비고</th>
+            </thead>
+            <tbody>
+                <td style="width: 10%;"><input class="createInput" name="workDay" type="text" placeholder="작업일자 입력"></td>
+                <td style="width: 15%;"><input class="createInput" name="carNumber" type="text" placeholder="차량번호 입력"></td>
+                <td style="width: 15%;"><input class="createInput" name="carName" type="text" placeholder="차량이름 입력"></td>
+                <td style="width: 15%;"><input class="createInput" name="meter" type="number" placeholder="키로수"></td>
+                <td style="width: 20%;" id="workInfo">
+                    <input name="workName" style="" type="text" placeholder="작업 명">
+                    <input name="workPrice" style="" type="number" placeholder="가격(반드시 숫자만 입력)">
+                </td>
+
+                <td style="width: 20%;"><input class="createInput" name="desc" type="text" placeholder="비고"></td>
+
+            </tbody>
+        </table>
+        <input style="width: 15%; height: 50px;" id="createInfo" type="button" value="등록">
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+</div>
+<div>
+    <h1>등록된 전체 차량 정보<span id="totalCar"></span></h1>
+
+    <div name="paging">
+
+    </div>
+    <div id="allList">
+        <table border ="1" width="100%" height="100%" bordercolor="black" cellspacing="5">
+            <thead>
+                <tr>
+                    <th>날짜</th>
+                    <th>차량번호</th>
+                    <th>차량이름</th>
+                </tr>
+            </thead>
+            <tbody id="carList">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- 이 위치에 Bootstrap/Jquery core JavaScript가 구성된다. -->
+
+<!-- Page level plugin JavaScript-->
+<th:block layout:fragment="contentsScript">
+</th:block>
+<!-- Custom scripts for this pages-->
+<th:block layout:fragment="customScript">
+</th:block>
+</body>
+</html>
